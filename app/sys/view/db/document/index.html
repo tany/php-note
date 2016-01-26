@@ -1,0 +1,39 @@
+@if $items->size()
+<form method="post" action="?do=deleteAll">
+  <div class="sns-wrap--wide">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+      <thead>
+        <tr>
+          @foreach $fields as $field
+          <th class="mdl-data-table__cell--non-numeric">{$field}</th>
+          @end
+        </tr>
+      </thead>
+      <tbody>
+        @foreach $items as $item
+        <tr data-id="{$item->_id}">
+          @foreach $fields as $key => $field
+          <td class="mdl-data-table__cell--non-numeric {$item->fieldType($field)}">
+            @if $key === 0
+              <a href="{$item->_id}">{$item->toString($field)}</a>
+            @else
+              {{ mb_strimwidth($item->toString($field), 0, 16) }}
+            @end
+          </td>
+          @end
+        </tr>
+        @end
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sns-list-footer">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+      Delete
+    </button>
+    <div class="sns-list-footer--right">
+      Prev 1 2 3 Next
+    </div>
+  </div>
+</form>
+@end

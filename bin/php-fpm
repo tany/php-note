@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/opt/remi/php70/root/usr/sbin/php-fpm

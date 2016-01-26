@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note</title>
+<link href="/asset/sns/style.css" rel="stylesheet" />
+<script src="/asset/sns/script.js"></script>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+      @render '_header'
+    </div>
+  </header>
+
+  <div class="mdl-layout__drawer">
+    @render '_navi'
+  </div>
+
+  <main class="mdl-layout__content">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col" id="content">
+
+        @yield
+
+      </div>
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

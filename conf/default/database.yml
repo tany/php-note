@@ -1,0 +1,9 @@
+# server:
+#   mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+default:
+  server: mongodb://localhost:27017
+  dbname: note
+  options:
+    fsync: true
+
+test:

@@ -1,0 +1,26 @@
+<div class="sns-wrap--wide">
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Field Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Type</th>
+        <th class="mdl-data-table__cell--non-numeric">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach $item->data() as $field => $value
+        <tr data-id="{$field}">
+          <td class="mdl-data-table__cell--non-numeric">
+            {$field}
+          </td>
+          <td class="mdl-data-table__cell--non-numeric object">
+            {{ preg_replace('/.*-/', '', $item->fieldClass($field)) }}
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <div style="white-space: pre;">{{ $item->toString($field) }}</div>
+          </td>
+        </tr>
+      @end
+    </tbody>
+  </table>
+</div>

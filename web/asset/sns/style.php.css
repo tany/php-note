@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+//= require 'mdl/material.min.css'
+//= require 'mdi/material-icons.css'
+
+// -------------------------------------------------------------------------------------------------
+// base design
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: #f2f1f0;
+  color: rgba(0, 0, 0, 0.60);
+  font: 14px/1.3 Robot, Helvetica, Arial, "Yu Gothic", "Hiragino Kaku Gothic Pro", Meiryo, "MS PGgothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  //overflow: hidden;
+  //overflow-y: auto;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  font: inherit;
+}
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: #45b;
+}
+a:focus {
+  outline: thin dotted;
+  outline-offset: -2px;
+}
+#app-stat {
+  position: absolute;
+  left: 5px;
+  bottom: 1px;
+}
+.app-dump {
+  position: relative;
+  z-index: 1000;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #bbb;
+  $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #820;
+  font: 12px/1.4 arial, sans-serif;
+}
+
+// -------------------------------------------------------------------------------------------------
+// material icons
+
+.material-icons.with-text {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+// -------------------------------------------------------------------------------------------------
+// material design
+
+.mdl-layout__header {
+  //$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  color: inherit;
+  #more-button {
+    margin-left: 15px;
+  }
+}
+.mdl-layout__drawer {
+  background-color: #fff;
+}
+.mdl-navigation .mdl-navigation__link {
+  color: inherit;
+  &.is-active {
+    color: #FF4081;
+  }
+}
+.mdl-layout__header .mdl-layout__drawer-button {
+  color: inherit;
+}
+.mdl-mega-footer {
+  background: transparent;
+}
+.mdl-data-table {
+  tbody tr, th, td {
+    height: auto;
+  }
+  th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #aaa;
+    font: inherit;
+    font-weight: bold;
+  }
+  td {
+    padding-top: 9px;
+    padding-bottom: 8px;
+  }
+  th .mdl-data-table__select {
+    top: 8px;
+  }
+  td .mdl-data-table__select {
+    top: 6px;
+  }
+}
+.mdl-textfield {
+  &__input {
+    padding-left: 6px;
+    $box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+    font: inherit;
+  }
+  &__label {
+    padding-left: 6px;
+    $box-sizing: border-box;
+  }
+}
+
+/* IE10 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+}
+
+// -------------------------------------------------------------------------------------------------
+// sns layout
+
+.sns-layout-title__link {
+  color: inherit;
+}
+.sns-navigation {
+  &-title {
+    padding: 0 15px;
+    color: inherit;
+    font-size: 120%;
+  }
+  .mdl-navigation__link {
+    padding: 2px 15px !important;
+    line-height: 1.1;
+    //word-wrap: break-word;
+    word-wrap: nowrap;
+    white-space: nowrap;
+    i { font-size: 100%; }
+  }
+}
+.sns-content {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.sns-content-menu {
+  float: right;
+  .mdl-button {
+    margin-left: 5px;
+  }
+  .mdl-button--fab {
+    //margin-top: -5px;
+  }
+}
+.sns-content-title {
+  margin: 12px 20px 30px;
+  font-size: 200%;
+}
+.sns-breadcrumbs {
+  color: #999;
+  a { color: inherit; }
+  a:hover { color: #777; }
+}
+.sns-wrap--wide {
+  //.mdl-shadow--2dp
+}
+.sns-list-footer {
+  margin: 12px 0 0;
+  &--right {
+    float: right;
+  }
+}
+.sns-form-footer {
+  .mdl-button {
+    min-width: 120px;
+  }
+}
+.sns-textfield--wide {
+  width: 100%;
+  textarea {
+    height: 400px;
+  }
+}
+
+// -------------------------------------------------------------------------------------------------
+// article
+
+.sns-articles {
+  margin: 0 0 10px 0;
+}
+.sns-article-title {
+  font-size: 160%;
+}
+.sns-article-meta {
+  padding: 0 5px;
+  .user { margin-right: 10px; }
+  .date { }
+}
+.sns-article-content {
+  padding: 20px 0;
+}
+
+// -------------------------------------------------------------------------------------------------
+// note
+
+.sns-note {
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note</title>
+<link href="/asset/sns/style.css" rel="stylesheet" />
+<script src="/asset/sns/script.js"></script>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+      @render '_header'
+    </div>
+  </header>
+
+  <div class="mdl-layout__drawer">
+    @render '_navi'
+  </div>
+
+  <main class="mdl-layout__content">
+    <a name="top"></a>
+    <div class="mdl-grid sns-content">
+      <div class="mdl-cell mdl-cell--12-col" id="content">
+
+        <!--
+        @if $breadcrumbs
+          <nav class="sns-breadcrumbs">
+          @foreach $breadcrumbs as $link
+            / <a href="{$link[0]}">{$link[1]}</a>
+          @end
+          </nav>
+        @end
+        -->
+
+        @yield
+
+      </div>
+    </div>
+
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer--top-section">
+        <div class="mdl-mega-footer--right-section">
+          <a href="#top"><i class="material-icons">vertical_align_top</i></a>
+        </div>
+      </div>
+      <div class="mdl-mega-footer--middle-section">
+        @2015-2016
+      </div>
+    </footer>
+  </main>
+
+</div>
+</body>
+</html>

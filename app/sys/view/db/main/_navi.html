@@ -1,0 +1,31 @@
+<h1 class="mdl-layout-title">
+  <i class="material-icons with-text">perm_data_setting</i>
+  <a class="sns-layout-title__link" href="/">Note</a>
+  / <a class="sns-layout-title__link" href="/.sys/db/">DB</a>
+</h1>
+
+@if !$request->db
+  <a class="sns-navigation-title" href="/.sys/db/">
+    <i class="material-icons with-text">cloud</i> localhost
+  </a>
+@else
+  <a class="sns-navigation-title" href="/.sys/db/{$request->db}/">
+    <i class="material-icons with-text">drafts</i> {$request->db}
+  </a>
+@end
+
+<nav class="mdl-navigation sns-navigation">
+  @if !$request->db
+    @foreach \mongo\DB::connect()->databases($request->db) as $item
+    <a class="mdl-navigation__link" href="/.sys/db/{$item->name}/">
+      <i class="material-icons with-text">drafts</i>{$item->name}
+    </a>
+    @end
+  @else
+    @foreach \mongo\DB::connect()->collections($request->db) as $item
+    <a class="mdl-navigation__link" href="/.sys/db/{$request->db}/{$item->name}/">
+      <i class="material-icons with-text">style</i>{$item->name}
+    </a>
+    @end
+  @end
+</nav>

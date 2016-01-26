@@ -1,0 +1,18 @@
+<article class="sns-article">
+  <header>
+    <div class="sns-content-menu">
+      @render 'menu'
+    </div>
+    <h2 class="sns-content-title">
+      {$item->title}
+    </h2>
+    <div class="sns-article-meta">
+      <a class="user" href="/user/{$item->uid}/">{$item->uid}</a>
+      <time class="date">{$item->updated}</time>
+    </div>
+  </header>
+
+  <div class="sns-article-content">
+    {{= nl2br($item->body) }}
+  </div>
+</article>

@@ -1,0 +1,42 @@
+<style>
+.mdl-layout__content { overflow-x: auto; }
+td.null { color: #ccc; }
+td.bool, td.integer, td.array, td.object { color: #6a6; }
+</style>
+
+<h1 class="mdl-layout-title sns-layout-title">
+  <a class="sns-layout-title__link" href="/.sys/db/{$request->db}/{$request->coll}/">
+    <i class="material-icons with-text">style</i> {$request->coll}
+  </a>
+</h1>
+<div class="mdl-layout-spacer"></div>
+
+<nav class="mdl-navigation">
+  @if !$request->id
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="?do=create">
+      <i class="material-icons with-text">add_circle_outline</i>Add
+    </a>
+  @elseif $request->do === 'update'
+    <form method="post" action="?do=delete">
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" type="submit">
+        <i class="material-icons with-text">delete</i>Drop
+      </button>
+    </form>
+  @else
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="?do=update">
+      <i class="material-icons with-text">edit</i>Edit
+    </a>
+  @end
+</nav>
+
+<button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+  <i class="material-icons">more_vert</i>
+</button>
+
+<ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+  <li class="mdl-menu__item">
+    <a href="#">
+      <i class="material-icons with-text">videogame_asset</i>Command
+    </a>
+  </li>
+</ul>

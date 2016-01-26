@@ -1,0 +1,26 @@
+@if $items
+<form method="post" action="?do=deleteAll">
+  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach $items as $item
+      <tr data-id="{$item->name}">
+        <td class="mdl-data-table__cell--non-numeric">
+          <a href="{$item->name}/">{$item->name}</a>
+        </td>
+      </tr>
+      @end
+    </tbody>
+  </table>
+
+  <div class="sns-list-footer">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+      Delete
+    </button>
+  </div>
+</form>
+@end
