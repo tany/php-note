@@ -18,7 +18,8 @@ td.bool, td.integer, td.array, td.object { color: #6a6; }
     </a>
   @elseif $request->do === 'update'
     <form method="post" action="?do=delete">
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" type="submit">
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" type="submit"
+       onclick="return confirm('mjd?');">
         <i class="material-icons with-text">delete</i>Drop
       </button>
     </form>
