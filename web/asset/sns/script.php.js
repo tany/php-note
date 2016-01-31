@@ -6,7 +6,7 @@ $(function() {
   path = location.pathname + "/";
   $(".mdl-navigation__link").each(function() {
     if (path.indexOf($(this).attr("href")) === 0) {
-      return $(this).addClass("is-active");
+      return $(this).addClass("is-current");
     }
   });
   

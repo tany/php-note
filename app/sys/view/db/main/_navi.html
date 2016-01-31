@@ -16,13 +16,13 @@
 
 <nav class="mdl-navigation sns-navigation">
   @if !$request->db
-    @foreach \mongo\DB::connect()->databases($request->db) as $item
+    @foreach \mongo\Connection::connect()->databases($request->db) as $item
     <a class="mdl-navigation__link" href="/.sys/db/{$item->name}/">
       <i class="material-icons with-text">drafts</i>{$item->name}
     </a>
     @end
   @else
-    @foreach \mongo\DB::connect()->collections($request->db) as $item
+    @foreach \mongo\Connection::connect()->collections($request->db) as $item
     <a class="mdl-navigation__link" href="/.sys/db/{$request->db}/{$item->name}/">
       <i class="material-icons with-text">style</i>{$item->name}
     </a>

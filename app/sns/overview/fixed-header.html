@@ -27,7 +27,7 @@
       <div class="mdl-cell mdl-cell--12-col" id="content">
 
         <!--
-        @if $breadcrumbs
+        @if $breadcrumbs ?? 0
           <nav class="sns-breadcrumbs">
           @foreach $breadcrumbs as $link
             / <a href="{$link[0]}">{$link[1]}</a>

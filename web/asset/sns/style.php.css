@@ -62,7 +62,7 @@ a:focus {
 }
 
 // -------------------------------------------------------------------------------------------------
-// material design
+// material design lite
 
 .mdl-layout__header {
   //$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -77,7 +77,7 @@ a:focus {
 }
 .mdl-navigation .mdl-navigation__link {
   color: inherit;
-  &.is-active {
+  &.is-current {
     color: #FF4081;
   }
 }
@@ -173,8 +173,14 @@ a:focus {
   //.mdl-shadow--2dp
 }
 .sns-list-footer {
+  $clear;
   margin: 12px 0 0;
-  &--right {
+}
+.sns-list-header, .sns-list-footer {
+  &--center-section {
+    text-align: center;
+  }
+  &--right-section {
     float: right;
   }
 }
@@ -187,6 +193,18 @@ a:focus {
   width: 100%;
   textarea {
     height: 400px;
+  }
+}
+
+// -------------------------------------------------------------------------------------------------
+// general
+
+.pagination {
+  &__item {
+    display: inline-block;
+    margin: 0 1px;
+    padding: 5px;
+    font-size: 150%;
   }
 }
 

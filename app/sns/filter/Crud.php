@@ -42,16 +42,16 @@ trait Crud {
 
 class Crud__Bind {
 
-    public static function before() {
+    public static function bindBefore() {
         return function($request) {
             //$this->setModel($request);
             //$this->setItem($request);
         };
     }
 
-    public static function views() {
+    public static function bindViews() {
         return function($request) {
-            return ['sns/view/crud'];
+            $this->views[] = 'sns/view/crud';
         };
     }
 }

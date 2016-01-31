@@ -10,12 +10,13 @@ class Document extends \app\Controller {
 
     protected function model() {
         $ns = "{$this->request->db}.{$this->request->coll}";
-        return \sys\AnyModel::scope()->setNS($ns);
+        return \sys\AnyModel::scope()->setNamespace($ns);
     }
 
     public function index($request) {
         $this->items = $this->model()
-            ->sort(['_id' => -1]);
+            ->sort(['$natural' => -1])
+            ->page($request->page, 20);
 
         $fields = [];
         foreach ($this->items as $item) {

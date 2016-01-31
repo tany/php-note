@@ -7,32 +7,19 @@ trait Base {
     protected function setUser($request) {
         $this->curUser = 1;
     }
-
-    protected function bindBreadcrumbs($generator) {
-        $this->breadcrumbs = [];
-        foreach ($generator as $links) {
-            $this->breadcrumbs = array_merge($this->breadcrumbs, $links);
-        }
-    }
 }
 
 class Base__Bind {
 
-    public static function binds() {
-        return function($request) {
-            return ['breadcrumbs'];
-        };
-    }
-
-    public static function before() {
+    public static function bindBefore() {
         return function($request) {
             $this->setUser($request);
         };
     }
 
-    public static function overviews() {
+    public static function bindOverviews() {
         return function($request) {
-            return ['sns/overview/fixed-header'];
+            $this->overviews = ['sns/overview/fixed-header'];
         };
     }
 }

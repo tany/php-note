@@ -8,7 +8,7 @@ class Collection extends \app\Controller {
     use \sys\filter\Db;
 
     protected function model() {
-        return \mongo\DB::connect();
+        return \mongo\Connection::connect();
     }
 
     public function index($request) {

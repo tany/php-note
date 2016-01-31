@@ -20,7 +20,7 @@ class Engine {
     public function render($path, $locals = []) {
         include $file = $this->find($path);
         $this->dirs[] = dirname($file);
-        $this->compile($this->capture(), $locals);
+        $this->compile($this->capture(), $locals, $file);
         array_pop($this->dirs);
         return $this;
     }
@@ -30,7 +30,7 @@ class Engine {
             array_unshift($this->dirs, dirname($path));
             $this->yield = $this->capture();
             include $file = $this->find($path);
-            $this->compile($this->capture(), []);
+            $this->compile($this->capture(), [], $file);
             array_shift($this->dirs);
         }
         return $this;
@@ -42,7 +42,7 @@ class Engine {
         return ob_get_clean();
     }
 
-    protected function compile($code, $locals = []) {
+    protected function compile($code, $locals = [], $__file__ = null) {
         extract($this->_data);
         extract(func_get_arg(1));
         eval('?' . '>' . Parser::parse(func_get_arg(0)));

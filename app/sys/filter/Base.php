@@ -7,21 +7,21 @@ trait Base {
     use \sns\filter\Base;
 
     protected function validSysUser($request) {
-        //echo "valid system user";
+        //dump("valid system user");
     }
 }
 
 class Base__Bind {
 
-    public static function before() {
+    public static function bindBefore() {
         return function($request) {
             $this->validSysUser($request);
         };
     }
 
-    public static function breadcrumbs() {
-        return function($request) {
-            return [['/.sys/', 'Administration']];
-        };
-    }
+//     public static function breadcrumbs() {
+//         return function($request) {
+//             return [['/.sys/', 'Administration']];
+//         };
+//     }
 }

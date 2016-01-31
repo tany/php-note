@@ -20,7 +20,8 @@ trait Json {
             if ($m[1] === 'ObjectID') {
                 $item = new \MongoDB\BSON\ObjectID($m[2]);
             } elseif ($m[1] === 'Timestamp') {
-                $item = new \MongoDB\BSON\Timestamp($m[2]);
+                $sec = preg_split('/:/', trim($m[2], '[]'));
+                $item = new \MongoDB\BSON\Timestamp($sec[0], $sec[1]);
             } elseif ($m[1] === 'UTCDateTime') {
                 $item = new \MongoDB\BSON\UTCDateTime($m[2]);
             }

@@ -5,16 +5,36 @@ namespace mongo;
 use MongoDB\Driver\Manager;
 use MongoDB\Driver\Command;
 use MongoDB\Driver\Query;
+use \MongoDB\BSON\Persistable;
 
-class Model implements \MongoDB\BSON\Persistable, \Iterator {
+class Model implements Persistable, \Iterator {
 
     use \feature\Accessor;
-    use \mongo\model\Iterator;
-    use \mongo\model\Findable;
-    use \mongo\model\Format;
+    use model\Findable;
+    use model\Writable;
+    use model\Format;
 
-    protected $_db;
+    protected $_cn;
     protected $_ns;
+
+    public static function collection() {
+        return str_replace('\\', '_', underscore(get_called_class()));
+    }
+
+    public function connect() {
+        if ($this->_cn) return $this->_cn;
+        return $this->_cn = \mongo\Connection::connect();
+    }
+
+    public function setNamespace($namespace) {
+        $this->_ns = $namespace;
+        return $this;
+    }
+
+    public function namespace() {
+        if ($this->_ns) return $this->_ns;
+        return $this->_ns = "{$this->connect()->db()}." . static::collection();
+    }
 
     public function bsonSerialize() {
         throw new \Exception('?');
@@ -22,32 +42,7 @@ class Model implements \MongoDB\BSON\Persistable, \Iterator {
 
     public function bsonUnserialize(array $data) {
         $this->_data = $data;
-        $this->_db = \mongo\DB::lastConnection();
-        $this->_ns = \mongo\DB::lastQuery()['namespace'];
-    }
-
-    public function db() {
-        if ($this->_db) return $this->_db;
-        return $this->_db = \mongo\DB::connect();
-    }
-
-    public function setDB($db) {
-        $this->_db = $db;
-        return $this;
-    }
-
-    public function ns() {
-        return $this->_ns;
-    }
-
-    public function setNS($namespace) {
-        $this->_ns = $namespace;
-        return $this;
-    }
-
-    // writable
-
-    public function remove() {
-        return $this->db()->delete($this->_ns, ['_id' => $this->_id]);
+        $this->_cn = \mongo\Connection::lastConnection();
+        $this->_ns = \mongo\Connection::lastQuery()['namespace'];
     }
 }

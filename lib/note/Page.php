@@ -2,7 +2,7 @@
 
 namespace note;
 
-class Page {
+class Page extends \mongo\Model {
 
     public function all() {
         $items = [];

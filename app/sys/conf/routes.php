@@ -8,7 +8,7 @@
         :id    sys/db/Document/see
 
   user/        sys/User/index
-    :id/       sys/User/see
+    :id        sys/User/see
 
 # --------
 # [method]

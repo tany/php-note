@@ -5,7 +5,6 @@ namespace app;
 class Controller {
 
     use \feature\Accessor;
-    //use controller\Renderer;
 
     protected $response;
     protected $views = [];
@@ -20,25 +19,17 @@ class Controller {
 
     public function __invoke() {
         $binders = [];
-        foreach (class_uses_real(get_class($this)) as $trait) {
+        foreach (class_uses_real(get_called_class()) as $trait) {
             if (class_exists($class = "{$trait}__Bind")) $binders[] = $class;
         }
 
         $binds = ['before', 'views', 'overviews'];
-        foreach ($binders as $class) {
-            if (!method_exists($class, 'binds')) continue;
-            $binds = array_merge($binds, $class::binds()->call($this, $this->request));
-        }
-
-        foreach ($binds as $bind) {
-            $generator = function() use ($binders, $bind) {
-                foreach ($binders as $binder) {
-                    if (!method_exists($binder, $bind)) continue;
-                    yield $binder => $binder::$bind()->call($this, $this->request);
-                }
-            };
-            $method = "bind" . ucfirst($bind);
-            $this->$method($generator());
+        foreach ($binds as $name) {
+            $method = 'bind' . ucfirst($name);
+            foreach ($binders as $class) {
+                if (method_exists($class, $method)) $class::$method()->call($this, $this->request);
+            }
+            $this->$name($this->request);
         }
 
         if ($resp = $this->{$this->action}($this->request)) {
@@ -47,22 +38,16 @@ class Controller {
         return $this->render();
     }
 
-    protected function bindBefore($generator) {
-        foreach ($generator as $views) {
-            if ($this->resp);
-        }
+    protected function before($request) {
+        //
     }
 
-    protected function bindViews($generator) {
-        foreach ($generator as $views) {
-            $this->views = array_merge($this->views, $views);
-        }
+    protected function views($request) {
+        //
     }
 
-    protected function bindOverviews($generator) {
-        foreach ($generator as $views) {
-            if ($views) $this->overviews = $views;
-        }
+    protected function overviews($request) {
+        //
     }
 
     protected function render() {

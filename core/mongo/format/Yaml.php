@@ -19,7 +19,8 @@ trait Yaml {
     }
 
     protected static function decodeCallback_Timestamp($value, $tag, $flags) {
-        return new \MongoDB\BSON\Timestamp($value);
+        $sec = preg_split('/:/', trim($value, '[]'));
+        return new \MongoDB\BSON\Timestamp($sec[0], $sec[1]);
     }
 
     protected static function decodeCallback_UTCDateTime($value, $tag, $flags) {

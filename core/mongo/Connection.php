@@ -10,7 +10,7 @@ use MongoDB\Driver\BulkWrite;
 // https://github.com/mongodb/mongo-php-library/blob/master/src/Client.php
 // https://github.com/mongodb/mongo-php-library/blob/master/src/Operation/ListDatabases.php
 
-final class DB {
+final class Connection {
 
     public $result; // MongoDB\Driver\WriteResult
 
@@ -38,6 +38,10 @@ final class DB {
 
     public static function lastQuery() {
         return self::$lastQuery;
+    }
+
+    public function db() {
+        return $this->dbname;
     }
 
     public function command($db, $command) {
@@ -99,10 +103,10 @@ final class DB {
         return $this->update($namespace, $filter, $data, $options);
     }
 
-    public function updateAll($namespace, $filter = [], $data = [], $options = []) {
-        $options['multi'] = $options['multi'] ?? true;
-        return $this->update($namespace, $filter, $data, $options);
-    }
+//     public function updateAll($namespace, $filter = [], $data = [], $options = []) {
+//         $options['multi'] = $options['multi'] ?? true;
+//         return $this->update($namespace, $filter, $data, $options);
+//     }
 
     public function delete($namespace, $filter = [], $options = []) {
         $bulk = new BulkWrite;
@@ -111,8 +115,8 @@ final class DB {
         return !$this->result->getWriteErrors();
     }
 
-    public function deleteAll($namespace, $filter = [], $options = []) {
-        $options['limit'] = $options['limit'] ?? 0;
-        return $this->delete($namespace, $filter, $options);
-    }
+//     public function deleteAll($namespace, $filter = [], $options = []) {
+//         $options['limit'] = $options['limit'] ?? 0;
+//         return $this->delete($namespace, $filter, $options);
+//     }
 }

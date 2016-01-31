@@ -31,8 +31,8 @@
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
       Delete
     </button>
-    <div class="sns-list-footer--right">
-      Prev 1 2 3 Next
+    <div class="sns-list-footer--right-section">
+      {{= $items->paginate() }}
     </div>
   </div>
 </form>
