@@ -12,34 +12,27 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
   <header class="mdl-layout__header mdl-layout__header--waterfall">
-    <div class="mdl-layout__header-row">
-      @render '_header'
-    </div>
+    @render '_layout-header'
   </header>
 
   <div class="mdl-layout__drawer">
     @render '_navi'
   </div>
 
-  <main class="mdl-layout__content">
+  <main class="mdl-layout__content" id="content">
     <a name="top"></a>
-    <div class="mdl-grid sns-content">
-      <div class="mdl-cell mdl-cell--12-col" id="content">
 
-        <!--
-        @if $breadcrumbs ?? 0
-          <nav class="sns-breadcrumbs">
-          @foreach $breadcrumbs as $link
-            / <a href="{$link[0]}">{$link[1]}</a>
-          @end
-          </nav>
-        @end
-        -->
+    <!--
+    @if $breadcrumbs ?? 0
+      <nav class="sns-breadcrumbs">
+      @foreach $breadcrumbs as $link
+        / <a href="{$link[0]}">{$link[1]}</a>
+      @end
+      </nav>
+    @end
+    -->
 
-        @yield
-
-      </div>
-    </div>
+    @yield
 
     <footer class="mdl-mega-footer">
       <div class="mdl-mega-footer--top-section">

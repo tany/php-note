@@ -150,6 +150,10 @@ a:focus {
 .sns-content {
   max-width: 980px;
   margin: 0 auto;
+  padding: 10px;
+}
+.sns-content--wide {
+  padding: 10px;
 }
 .sns-content-menu {
   float: right;
@@ -163,14 +167,12 @@ a:focus {
 .sns-content-title {
   margin: 12px 20px 30px;
   font-size: 200%;
+  a { color: inherit; }
 }
 .sns-breadcrumbs {
   color: #999;
   a { color: inherit; }
   a:hover { color: #777; }
-}
-.sns-wrap--wide {
-  //.mdl-shadow--2dp
 }
 .sns-list-footer {
   $clear;
@@ -192,7 +194,7 @@ a:focus {
 .sns-textfield--wide {
   width: 100%;
   textarea {
-    height: 400px;
+    height: 360px;
   }
 }
 
@@ -222,7 +224,7 @@ a:focus {
   .user { margin-right: 10px; }
   .date { }
 }
-.sns-article-content {
+.sns-article-body {
   padding: 20px 0;
 }
 

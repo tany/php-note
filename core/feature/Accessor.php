@@ -27,7 +27,7 @@ trait Accessor {
     }
 
     public function setData($data) {
-        $this->_data += $data;
+        $this->_data = $data + $this->_data;
         return $this;
     }
 }

@@ -1,0 +1,18 @@
+<nav class="mdl-navigation">
+  @if $this->action === 'index'
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="?do=create">
+      <i class="material-icons with-text">add_circle_outline</i>Add
+    </a>
+  @elseif $this->action === 'see'
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="?do=update">
+      <i class="material-icons with-text">edit</i>Edit
+    </a>
+  @elseif $this->action === 'update'
+    <form method="post" action="?do=delete">
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" type="submit"
+       onclick="return confirm('mjd?');">
+        <i class="material-icons with-text">delete</i>Drop
+      </button>
+    </form>
+  @end
+</nav>

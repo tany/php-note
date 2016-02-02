@@ -28,6 +28,7 @@ trait Yaml {
     }
 
     public static function encode($data) {
+        if (!$data) return null;
         $yaml = yaml_emit($data, YAML_UTF8_ENCODING, YAML_ANY_BREAK, [
             'MongoDB\BSON\ObjectID'    => 'self::encodeCallback',
             'MongoDB\BSON\Timestamp'   => 'self::encodeCallback',

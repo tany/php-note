@@ -1,7 +1,7 @@
-<article class="sns-article">
+<article class="sns-content">
   <header>
     <div class="sns-content-menu">
-      @render 'menu'
+      @render '_menu'
     </div>
     <h2 class="sns-content-title">
       {$item->title}
@@ -12,7 +12,7 @@
     </div>
   </header>
 
-  <div class="sns-article-content">
+  <div class="sns-article-body">
     {{= nl2br($item->body) }}
   </div>
-</article>
+</content>

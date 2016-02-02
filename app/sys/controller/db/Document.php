@@ -20,15 +20,12 @@ class Document extends \app\Controller {
 
         $fields = [];
         foreach ($this->items as $item) {
-            foreach ($item->data() as $key => $val) $fields[$key] = 1;
+            foreach ($item->data() as $key => $val) {
+                if ($val) $fields[$key] = 1;
+            }
         }
         ksort($fields);
         $this->fields = array_keys($fields);
-    }
-
-    public function see($request) {
-        $item = $this->model()->find($request->id);
-        $this->item = $item;
     }
 
     public function create($request) {
@@ -49,21 +46,5 @@ class Document extends \app\Controller {
         if (isset($request->{'save-yaml'})) $item->parseYaml($request->data['yaml']);
         if (isset($request->{'save-json'})) $item->parseJson($request->data['json']);
         if ($item->save()) return $this->redirect("?");
-    }
-
-    public function delete($request) {
-        $item = $this->model()->find($request->id);
-        $this->item = $item;
-
-        if (!$request->isPost()) return;
-        if ($item->remove()) return $this->redirect("./");
-    }
-
-    public function deleteAll($request) {
-        foreach ($request->id as $id) {
-            $item = $this->model()->find($id);
-            $item->remove();
-        }
-        return $this->redirect("./");
     }
 }

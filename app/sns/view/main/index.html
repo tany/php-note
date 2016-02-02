@@ -1,14 +1,14 @@
-<section>
+<section class="sns-content">
   <header>
     <nav class="sns-content-menu">
-      <a href="/note/?do=create" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="/note/?do=create">
         <i class="material-icons">add</i>
       </a>
     </nav>
     <h2 class="sns-content-title">
-      Articles
+      Recent Pages
     </h2>
   </header>
 
-  @render 'note/view/page/items', ['items' => $items]
+  @render 'note/view/page/_items', ['items' => $items]
 </section>

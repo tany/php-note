@@ -6,33 +6,28 @@ class Engine {
 
     use \feature\Accessor;
 
-    protected $dirs = [];
+    protected $_path;
+    protected $_dirs = [];
 
     public function __construct() {
         if (!ob_get_level()) ob_start();
     }
 
     public function includePath($paths) {
-        $this->dirs = array_merge($this->dirs, (array)$paths);
+        $this->_dirs = array_merge($this->_dirs, (array)$paths);
+        return $this;
+    }
+
+    public function currentPath($path) {
+        $this->_path = $path;
         return $this;
     }
 
     public function render($path, $locals = []) {
         include $file = $this->find($path);
-        $this->dirs[] = dirname($file);
+        array_unshift($this->_dirs, dirname($file));
         $this->compile($this->capture(), $locals, $file);
-        array_pop($this->dirs);
-        return $this;
-    }
-
-    public function renderOver($paths) {
-        foreach (array_reverse($paths) as $path) {
-            array_unshift($this->dirs, dirname($path));
-            $this->yield = $this->capture();
-            include $file = $this->find($path);
-            $this->compile($this->capture(), [], $file);
-            array_shift($this->dirs);
-        }
+        array_shift($this->_dirs);
         return $this;
     }
 
@@ -40,6 +35,17 @@ class Engine {
         ob_start();
         $this->render($path, $locals);
         return ob_get_clean();
+    }
+
+    public function renderOver($paths) {
+        foreach (array_reverse($paths) as $path) {
+            $this->_dirs[] = dirname($path);
+            $this->yield = $this->capture();
+            include $file = $this->find($path);
+            $this->compile($this->capture(), [], $file);
+            array_pop($this->_dirs);
+        }
+        return $this;
     }
 
     protected function compile($code, $locals = [], $__file__ = null) {
@@ -57,7 +63,7 @@ class Engine {
     protected function find($path) {
         $path = preg_match('/\.\w+$/', $path) ?: "{$path}.html";
 
-        foreach (array_reverse($this->dirs) as $dir) {
+        foreach (array_merge([$this->_path], $this->_dirs) as $dir) {
             if ($file = stream_resolve_include_path("{$dir}/{$path}")) {
                 if (is_file($file)) return $file;
             }

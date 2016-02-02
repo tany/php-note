@@ -1,20 +1,23 @@
-<div class="sns-content--wide">
-  @if $items
+<section class="sns-content">
+  @render '_header'
+
+  @if $items->size()
   <form method="post" action="?do=deleteAll">
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
       <thead>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Name</th>
-          <th>SizeOnDisk</th>
         </tr>
       </thead>
       <tbody>
         @foreach $items as $item
-        <tr data-id="{$item->name}">
+        <tr data-id="{$item->_id}">
           <td class="mdl-data-table__cell--non-numeric">
-            <a href="{$item->name}/">{$item->name}</a>
+            <a href="{$item->_id}">{$item->name}</a>
+            <div>
+              #{$item->_id}
+            </div>
           </td>
-          <td>{{ pretty_size($item->sizeOnDisk) }}</td>
         </tr>
         @end
       </tbody>
@@ -24,7 +27,10 @@
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
         Delete
       </button>
+      <div class="sns-list-footer--right-section">
+        {{= $items->paginate() }}
+      </div>
     </div>
   </form>
   @end
-</div>
+</section>

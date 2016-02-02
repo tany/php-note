@@ -7,7 +7,7 @@ class Controller {
     use \feature\Accessor;
 
     protected $response;
-    protected $views = [];
+    protected $views     = [];
     protected $overviews = [];
 
     public function __construct($request, $controller, $action) {
@@ -56,7 +56,7 @@ class Controller {
         $view = new \app\view\Engine();
         $view->_data =& $this->_data;
         $view->includePath($this->views);
-        $view->includePath(preg_replace('/\//', '/view/', underscore($this->controller), 1));
+        $view->currentPath(preg_replace('/\//', '/view/', underscore($this->controller), 1));
         $view->render($action);
         $view->renderOver($this->overviews);
 

@@ -12,23 +12,18 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
   <header class="mdl-layout__header mdl-layout__header--waterfall">
-    <div class="mdl-layout__header-row">
-      @render '_header'
-    </div>
+    @render '_layout-header'
   </header>
 
   <div class="mdl-layout__drawer">
     @render '_navi'
   </div>
 
-  <main class="mdl-layout__content">
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col" id="content">
+  <main class="mdl-layout__content" id="content">
+    <a name="top"></a>
 
-        @yield
+    @yield
 
-      </div>
-    </div>
   </main>
 
 </div>

@@ -5,8 +5,9 @@ namespace sys\controller;
 class User extends \app\Controller {
 
     use \sys\filter\Base;
+    use \sys\filter\Crud;
 
-    public function index() {
-        $item = \sys\User::scope();
+    protected function model() {
+        return \sys\User::scope();
     }
 }

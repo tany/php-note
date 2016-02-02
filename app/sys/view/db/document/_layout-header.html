@@ -1,0 +1,28 @@
+<div class="mdl-layout__header-row">
+  <h1 class="mdl-layout-title sns-layout-title">
+    <a class="sns-layout-title__link" href="/.sys/db/{$request->db}/{$request->coll}/">
+      <i class="material-icons with-text">style</i> {$request->coll}
+    </a>
+  </h1>
+  <div class="mdl-layout-spacer"></div>
+
+  @render '_menu'
+
+  <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+    <i class="material-icons">more_vert</i>
+  </button>
+
+  <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+    <li class="mdl-menu__item">
+      <a href="#">
+        <i class="material-icons with-text">videogame_asset</i>Command
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+.mdl-layout__content { overflow-x: auto; }
+td.null { color: #ccc; }
+td.bool, td.integer, td.array, td.object { color: #6a6; }
+</style>

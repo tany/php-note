@@ -29,6 +29,7 @@ trait Json {
     }
 
     public static function encode($data) {
+        if (!$data) return null;
         array_walk_recursive($data, 'self::encodeCallback');
         $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         $json = preg_replace('/"([a-zA-Z_]+[\w]*)":/', '$1:', $json);
