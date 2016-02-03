@@ -1,5 +1,5 @@
-<section class="sns-content">
-  <header>
+<header class="sns-header">
+  <div class="sns-content">
     <nav class="sns-content-menu">
       <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="/note/?do=create">
         <i class="material-icons">add</i>
@@ -8,7 +8,9 @@
     <h2 class="sns-content-title">
       Recent Pages
     </h2>
-  </header>
+  </div>
+</header>
 
+<div class="sns-content">
   @render 'note/view/page/_items', ['items' => $items]
-</section>
+</div>

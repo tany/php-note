@@ -147,10 +147,18 @@ a:focus {
     i { font-size: 100%; }
   }
 }
+.sns-header {
+  //background: #ddd;
+  border-bottom: 1px solid #ddd;
+  //color: #fff;
+  .sns-content {
+    padding: 20px 10px;
+  }
+}
 .sns-content {
   max-width: 980px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px 10px;
 }
 .sns-content--wide {
   padding: 10px;
@@ -161,11 +169,10 @@ a:focus {
     margin-left: 5px;
   }
   .mdl-button--fab {
-    //margin-top: -5px;
+    margin-top: -10px;
   }
 }
 .sns-content-title {
-  margin: 12px 20px 30px;
   font-size: 200%;
   a { color: inherit; }
 }
@@ -186,7 +193,11 @@ a:focus {
     float: right;
   }
 }
+.sns-form {
+  padding: 0px 0px;
+}
 .sns-form-footer {
+  //margin: 20px 0 0;
   .mdl-button {
     min-width: 120px;
   }

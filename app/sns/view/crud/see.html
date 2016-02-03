@@ -2,13 +2,13 @@
   <div class="sns-content">
     @render '_menu'
     <h2 class="sns-content-title">
-      {$item->title}
+      {{ preg_replace('/.*\W/', '', get_class(($items ?? $item))) }} #{$item->_id}
     </h2>
   </div>
 </header>
 
 <div class="sns-content">
-  <div class="sns-article-body">
-    {{= nl2br($item->body) }}
-  </div>
+  <form method="post" action="">
+    @render '_see'
+  </form>
 </div>

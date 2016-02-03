@@ -32,7 +32,7 @@ class Exception {
         if (ob_get_level()) $buf = ob_clean();
 
         $type  = self::$codes[$e->getCode()] ?? '';
-        $title = "{$type}: {$e->getMessage()}";
+        $title = "{$type}: " . self::message($e);
         $file  = $e->getFile();
         $line  = $e->getLine();
         $trace = $e->getTrace();
@@ -49,6 +49,18 @@ class Exception {
 
         include 'exception/template.php';
         exit;
+    }
+
+    protected static function message($e) {
+        if (is_a($e, 'MongoDB\Driver\Exception\BulkWriteException')) {
+            $messages = [];
+            foreach ($e->getWriteResult()->getWriteErrors() as $err) {
+                $messages[] = $err->getMessage();
+            }
+            return join('; ', $messages);
+        } else {
+            return $e->getMessage();
+        }
     }
 
     protected static function preview($text, $line) {

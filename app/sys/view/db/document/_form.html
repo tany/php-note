@@ -5,9 +5,11 @@
   </div>
 
   <div class="mdl-tabs__panel is-active" id="panel-json">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label sns-textfield--wide">
-      <textarea class="mdl-textfield__input" name="data[json]" id="data-json">{$item->toJson()}</textarea>
-      <label class="mdl-textfield__label" for="data-json">JSON</label>
+    <div class="sns-form">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label sns-textfield--wide">
+        <textarea class="mdl-textfield__input" name="data[json]" id="data-json">{$item->toJson()}</textarea>
+        <label class="mdl-textfield__label" for="data-json">JSON</label>
+      </div>
     </div>
     <div class="sns-form-footer">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
@@ -16,9 +18,11 @@
   </div>
 
   <div class="mdl-tabs__panel" id="panel-yaml">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label sns-textfield--wide">
-      <textarea class="mdl-textfield__input" name="data[yaml]" id="data-yaml">{$item->toYaml()}</textarea>
-      <label class="mdl-textfield__label" for="data-yaml">YAML</label>
+    <div class="sns-form">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label sns-textfield--wide">
+        <textarea class="mdl-textfield__input" name="data[yaml]" id="data-yaml">{$item->toYaml()}</textarea>
+        <label class="mdl-textfield__label" for="data-yaml">YAML</label>
+      </div>
     </div>
     <div class="sns-form-footer">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"

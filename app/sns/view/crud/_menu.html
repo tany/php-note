@@ -1,9 +1,5 @@
 <nav class="sns-content-menu">
-  @if $this->action === 'index'
-    <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="?do=create">
-      <i class="material-icons">add</i>
-    </a>
-  @elseif $this->action === 'see'
+  @if $this->action === 'see'
     <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" href="?do=update">
       <i class="material-icons with-text">edit</i>Edit
     </a>
@@ -14,5 +10,9 @@
         <i class="material-icons with-text">delete</i>Drop
       </button>
     </form>
+  @else $this->action === 'index'
+    <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="?do=create">
+      <i class="material-icons">add</i>
+    </a>
   @end
 </nav>
