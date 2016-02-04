@@ -1,0 +1,25 @@
+<div class="sns-content--wide">
+  <form method="post" action="">
+    <div class="sns-form">
+      <div style="margin: 0 0 20px;">
+        <a href="https://docs.mongodb.org/manual/reference/command/create/" target="_blank">
+          &lt;Database Commands - MongoDB Manual&gt;
+        </a>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield sns-field">
+        <label class="mdl-textfield__label">Database</label>
+        <input class="mdl-textfield__input" type="text" name="data[db]" required="required" />
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield sns-field sns-field--wide">
+        <label class="mdl-textfield__label">Command</label>
+        <textarea class="mdl-textfield__input" name="data[json]"></textarea>
+      </div>
+    </div>
+    <div class="sns-form-footer">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+       type="submit" name="save-json">Save</button>
+    </div>
+  </form>
+</div>

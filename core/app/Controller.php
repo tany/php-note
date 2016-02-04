@@ -50,8 +50,8 @@ class Controller {
         //
     }
 
-    protected function render() {
-        $action = $this->action;
+    protected function render($action = null) {
+        $action = $action ?? $this->action;
 
         $view = new \app\view\Engine();
         $view->_data =& $this->_data;

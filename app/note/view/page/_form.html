@@ -1,9 +1,9 @@
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-  <input class="mdl-textfield__input" type="text" name="data[title]" required="required" id="data-title" value="{$item->title}"/>
-  <label class="mdl-textfield__label" for="data-name">Title</label>
+<div class="mdl-textfield mdl-js-textfield sns-field sns-field--wide">
+  <label class="mdl-textfield__label">Title</label>
+  <input class="mdl-textfield__input" type="text" name="data[title]" value="{$item->title}" required="required" />
 </div>
 
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label sns-textfield--wide">
-  <textarea class="mdl-textfield__input" name="data[body]" required="required" id="data-body">{$item->body}</textarea>
-  <label class="mdl-textfield__label" for="data-body">Body</label>
+<div class="mdl-textfield mdl-js-textfield sns-field sns-field--wide">
+  <label class="mdl-textfield__label">Body</label>
+  <textarea class="mdl-textfield__input" name="data[body]" required="required">{$item->body}</textarea>
 </div>

@@ -5,6 +5,7 @@ namespace mongo\model;
 trait Writable {
 
     public function save() {
+        //array_filter($this->_data);
         if (isset($this->_id)) {
             return $this->connect()->upsert($this->namespace(), ['_id' => $this->_id], $this->_data);
         }

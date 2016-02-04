@@ -17,7 +17,10 @@ class Collection extends \app\Controller {
 
     public function create($request) {
         if (!$request->isPost()) return;
-        return $this->redirect("{$request->data['name']}/");
+
+        $name = $request->data['name'];
+        $this->model()->command($request->db, ['create' => $name]);
+        return $this->redirect("{$name}/");
     }
 
     public function deleteAll($request) {
@@ -25,5 +28,14 @@ class Collection extends \app\Controller {
             $this->model()->dropCollection($request->db, $id);
         }
         return $this->redirect("./");
+    }
+
+    public function rename($request) {
+       if (!$request->isPost()) return;
+
+        $fr = "{$request->db}.{$request->id}";
+        $to = "{$request->db}.{$request->data['name']}";
+        $this->model()->adminCommand(['renameCollection' => $fr, 'to' => $to]);
+        return $this->redirect("{$request->data['name']}/");
     }
 }

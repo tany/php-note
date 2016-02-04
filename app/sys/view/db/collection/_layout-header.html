@@ -1,8 +1,14 @@
 <div class="mdl-layout__header-row">
   <h1 class="mdl-layout-title sns-layout-title">
-    <a class="sns-layout-title__link" href="/.sys/db/{$request->db}">
-      <i class="material-icons with-text">drafts</i> {$request->db}
-    </a>
+    @if $request->id
+      <a class="sns-layout-title__link" href="{$request->id}/">
+        <i class="material-icons with-text">style</i> {$request->id}
+      </a>
+    @else
+      <a class="sns-layout-title__link" href="./">
+        <i class="material-icons with-text">drafts</i> {$request->db}
+      </a>
+    @end
   </h1>
   <div class="mdl-layout-spacer"></div>
 
@@ -17,10 +23,8 @@
   </button>
 
   <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-    <li class="mdl-menu__item">
-      <a href="#?do=command">
-        <i class="material-icons with-text">videogame_asset</i>Command
-      </a>
-    </li>
+    <a href="/.sys/db/?do=command">
+      <li class="mdl-menu__item">Command</li>
+    </a>
   </ul>
 </div>

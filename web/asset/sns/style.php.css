@@ -65,7 +65,7 @@ a:focus {
 // material design lite
 
 .mdl-layout__header {
-  //$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  overflow: visible;
   background-color: #fff;
   color: inherit;
   #more-button {
@@ -90,35 +90,22 @@ a:focus {
 .mdl-data-table {
   tbody tr, th, td {
     height: auto;
+    height: 32px;
+  }
+  th, td {
+    padding-top: 5px;
+    padding-bottom: 4px;
   }
   th {
-    padding-top: 10px;
-    padding-bottom: 10px;
     color: #aaa;
-    font: inherit;
+    //font: inherit;
     font-weight: bold;
   }
-  td {
-    padding-top: 9px;
-    padding-bottom: 8px;
-  }
   th .mdl-data-table__select {
-    top: 8px;
+    //top: 8px;
   }
   td .mdl-data-table__select {
-    top: 6px;
-  }
-}
-.mdl-textfield {
-  &__input {
-    padding-left: 6px;
-    $box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 1);
-    font: inherit;
-  }
-  &__label {
-    padding-left: 6px;
-    $box-sizing: border-box;
+    //top: 6px;
   }
 }
 
@@ -132,27 +119,26 @@ a:focus {
 .sns-layout-title__link {
   color: inherit;
 }
-.sns-navigation {
-  &-title {
+.mdl-layout__drawer {
+  .sns-navigation-title {
     padding: 0 15px;
     color: inherit;
     font-size: 120%;
   }
-  .mdl-navigation__link {
+  .sns-navigation  .mdl-navigation__link {
     padding: 2px 15px !important;
+    font: inherit;
+    font-size: 90%;
     line-height: 1.1;
-    //word-wrap: break-word;
     word-wrap: nowrap;
     white-space: nowrap;
     i { font-size: 100%; }
   }
 }
 .sns-header {
-  //background: #ddd;
-  border-bottom: 1px solid #ddd;
-  //color: #fff;
+  background-color: rgba(0, 0, 0, 0.05);
   .sns-content {
-    padding: 20px 10px;
+    padding: 30px 10px;
   }
 }
 .sns-content {
@@ -163,18 +149,19 @@ a:focus {
 .sns-content--wide {
   padding: 10px;
 }
+.sns-content-title {
+  font-size: 200%;
+  a { color: inherit; }
+}
 .sns-content-menu {
   float: right;
+  padding: 0 0 5px 5px;
   .mdl-button {
     margin-left: 5px;
   }
   .mdl-button--fab {
     margin-top: -10px;
   }
-}
-.sns-content-title {
-  font-size: 200%;
-  a { color: inherit; }
 }
 .sns-breadcrumbs {
   color: #999;
@@ -193,6 +180,10 @@ a:focus {
     float: right;
   }
 }
+
+// -----------------
+// form, field
+
 .sns-form {
   padding: 0px 0px;
 }
@@ -202,9 +193,26 @@ a:focus {
     min-width: 120px;
   }
 }
-.sns-textfield--wide {
+.sns-field {
+  display: block;
+  padding: 30px 0 20px;
+  .mdl-textfield__label {
+    top: 5px;
+    color: inherit;
+  }
+  &.is-dirty .mdl-textfield__label {
+    visibility: visible;
+  }
+  .mdl-textfield__input {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 8px;
+    $box-sizing: border-box;
+    font: inherit;
+  }
+}
+.sns-field--wide {
   width: 100%;
-  textarea {
+  textarea.mdl-textfield__input {
     height: 360px;
   }
 }

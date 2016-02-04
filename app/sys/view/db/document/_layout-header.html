@@ -1,6 +1,6 @@
 <div class="mdl-layout__header-row">
   <h1 class="mdl-layout-title sns-layout-title">
-    <a class="sns-layout-title__link" href="/.sys/db/{$request->db}/{$request->coll}/">
+    <a class="sns-layout-title__link" href="./">
       <i class="material-icons with-text">style</i> {$request->coll}
     </a>
   </h1>
@@ -13,11 +13,12 @@
   </button>
 
   <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-    <li class="mdl-menu__item">
-      <a href="#">
-        <i class="material-icons with-text">videogame_asset</i>Command
-      </a>
-    </li>
+    <a href="../{$request->coll}?do=rename">
+      <li class="mdl-menu__item">Rename Collection</li>
+    </a>
+    <a href="/.sys/db/?do=command">
+      <li class="mdl-menu__item">Command</li>
+    </a>
   </ul>
 </div>
 

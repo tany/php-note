@@ -26,4 +26,14 @@ class Database extends \app\Controller {
         }
         return $this->redirect("./");
     }
+
+    public function command($request) {
+        if (!$request->isPost()) return;
+
+        $this->item = (object)['json' => null];
+        $resp = $this->model()->command($request->data['db'], \mongo\format\Json::decode($request->data['json']));
+
+        dump($resp);
+        //return $this->redirect("?");
+    }
 }
