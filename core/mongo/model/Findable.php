@@ -4,91 +4,75 @@ namespace mongo\model;
 
 trait Findable {
 
-    protected $_filter  = [];
-    protected $_options = [];
     protected $_cursor;
+    protected $_query   = [];
+    protected $_options = [];
 
     public static function scope() {
         return new static;
     }
 
-    public function rewind() {
-        if (!$this->_cursor) $this->_cursor = $this->all();
-        return reset($this->_cursor);
+    public function getIterator() {
+        if ($this->_cursor) return $this->_cursor;
+        return $this->_cursor = $this->all();
     }
 
-    public function current() {
-        return current($this->_cursor);
-    }
-
-    public function key() {
-        return key($this->_cursor);
-    }
-
-    public function next() {
-        return next($this->_cursor);
-    }
-
-    public function valid() {
-        return key($this->_cursor) !== null;
-    }
-
-    public function where($filter) {
-        $this->_filter += $filter;
-        $this->_documents = null;
+    public function reset() {
+        $this->_cursor = null;
         return $this;
+    }
+
+    public function where($query) {
+        $this->_query += $query;
+        return $this->reset();
     }
 
     public function sort($sort) {
         $this->_options['sort'] = $sort;
-        $this->_documents = null;
-        return $this;
+        return $this->reset();
     }
 
     public function skip($num) {
         $this->_options['skip'] = $num;
-        return $this;
+        return $this->reset();
     }
 
     public function limit($num) {
         $this->_options['limit'] = $num;
-        return $this;
+        return $this->reset();
     }
 
-    public function page($page, $limit = null) {
-        $this->_page = $page ?? 1;
+    public function page($page, $limit = 20) {
+        $page = $page ?? 1;
+        $this->_options['page'] = $page;
         $this->_options['skip'] = (($page ?? 1) - 1) * $limit;
-        $this->_options['limit'] = $limit ?? $this->_options['limit'] ?? 50;
-        return $this;
+        $this->_options['limit'] = $limit;
+        return $this->reset();
     }
 
     public function size() {
-        list($db, $coll) = preg_split('/\./', $this->namespace(), 2);
-
-        $command = ['count' => $coll, 'query' => $this->_filter];
-        // limit, skip
-
-        $cursor = $this->connect()->command($db, $command);
+        $command = ['count' => $this->collectionName(), 'query' => $this->_query];
+        $cursor = $this->connect()->command($this->dbName(), $command);
         return current($cursor->toArray())->n;
     }
 
     public function paginate() {
-        return (new \html\Pagination())
+        return (new \app\html\Pagination())
             ->size($this->size())
-            ->page($this->_page)
+            ->page($this->_options['page'])
             ->limit($this->_options['limit']);
     }
 
     public function all() {
-        $cursor = $this->connect()->query($this->namespace(), $this->_filter, $this->_options);
-        $cursor->setTypeMap(['root' => get_called_class()]);
-        return $cursor->toArray();
+        $cursor = $this->connect()->query($this->ns(), $this->_query, $this->_options);
+        $cursor->setTypeMap(['root' => get_called_class(), 'document' => 'array']);
+        return new Cursor($cursor->toArray());
     }
 
     public function one() {
-        $options = $this->_options + ['limit' => 1];
-        $cursor = $this->connect()->query($this->namespace(), $this->_filter, $options);
-        $cursor->setTypeMap(['root' => get_called_class()]);
+        $options = ['limit' => 1] + $this->_options;
+        $cursor = $this->connect()->query($this->ns(), $this->_query, $options);
+        $cursor->setTypeMap(['root' => get_called_class(), 'document' => 'array']);
         return current($cursor->toArray());
     }
 
@@ -100,9 +84,9 @@ trait Findable {
                 $id = (int)$id;
             }
         }
-        $filter = $this->_filter + ['_id' => $id];
-        $cursor = $this->connect()->query($this->namespace(), $filter, $this->_options);
-        $cursor->setTypeMap(['root' => get_called_class()]);
+        $filter = ['_id' => $id] + $this->_query;
+        $cursor = $this->connect()->query($this->ns(), $filter, $this->_options);
+        $cursor->setTypeMap(['root' => get_called_class(), 'document' => 'array']);
         return current($cursor->toArray());
     }
 }

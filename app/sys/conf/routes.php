@@ -1,14 +1,14 @@
 .sys/          sys/Main/index
 
-  db/          sys/db/Database/index
-    :id        sys/db/Database/see
-    :db/       sys/db/Collection/index
-      :id      sys/db/Collection/see
-      :coll/   sys/db/Document/index
-        :id    sys/db/Document/see
+  db/          sys/db/Databases/index
+    :id        sys/db/Databases/see
+    :db/       sys/db/Collections/index
+      :id      sys/db/Collections/see
+      :coll/   sys/db/Documents/index
+        :id    sys/db/Documents/see
 
-  user/        sys/User/index
-    :id        sys/User/see
+  user/        sys/Users/index
+    :id        sys/Users/see
 
 # --------
 # [method]

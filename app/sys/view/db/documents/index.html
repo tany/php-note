@@ -1,0 +1,41 @@
+<div class="sns-content--wide">
+  @if $items->size()
+  <form method="post" action="?do=dropAll">
+    <div class="sns-wrap--wide">
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+        <thead>
+          <tr>
+            @foreach $fields as $field
+            <th class="mdl-data-table__cell--non-numeric">{$field}</th>
+            @end
+          </tr>
+        </thead>
+        <tbody>
+          @foreach $items as $item
+          <tr data-id="{$item->_id}">
+            @foreach $fields as $key => $field
+            <td class="mdl-data-table__cell--non-numeric {$item->cssClass($field)}">
+              @if $key === 0
+                <a href="{$item->_id}">{$item->toShortString($field)}</a>
+              @else
+                {$item->toShortString($field)}
+              @end
+            </td>
+            @end
+          </tr>
+          @end
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sns-list-footer">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+        <i class="material-icons with-text">delete</i>
+      </button>
+      <div class="sns-list-footer--right-section">
+        {{= $items->paginate() }}
+      </div>
+    </div>
+  </form>
+  @end
+</div>

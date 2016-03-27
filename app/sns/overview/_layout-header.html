@@ -2,6 +2,7 @@
   <h1 class="mdl-layout-title">
     <a class="sns-layout-title__link" href="/">Note</a>
   </h1>
+
   <div class="mdl-layout-spacer"></div>
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -14,15 +15,28 @@
     </div>
   </div>
 
-  <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
-    <i class="material-icons">more_vert</i>
-  </button>
+  @if $curUser ?? 0
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" id="more-button">
+      {{ ucfirst($curUser->uid[0]) }}
+    </button>
+    <!--
+    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+      <i class="material-icons">more_vert</i>
+    </button>
+    -->
+  @else
+    <a class="mdl-button mdl-js-button mdl-button--raise mdl-js-ripple-effect" href="/login">
+      Sign in
+    </a>
+  @end
 
+  @if $curUser ?? 0
   <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-    <a href="#">
+    <a href="/logout">
       <li class="mdl-menu__item">
         <i class="material-icons with-text">exit_to_app</i>Sign out
       </li>
     </a>
   </ul>
+  @end
 </div>

@@ -6,7 +6,7 @@ class Router {
 
     public static $routes = [];
 
-    protected static $conf  = ROOT . '/app/*/conf/routes.php';
+    protected static $conf  = APP . '/*/conf/routes.php';
     protected static $cache = TMP . '/routes.cache';
 
     public static function run($request) {

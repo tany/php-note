@@ -1,9 +1,13 @@
 README
 ======
 
-## INSTALL
+## Description
 
-```
+MongoDB Tool + α
+
+## Install
+
+~~~
 # rpm -Uvh http://ftp.iij.ad.jp/pub/linux/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 # rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
@@ -15,20 +19,20 @@ README
     cyrus-sasl-devel
 
 # vi /etc/opt/remi/php70/php-fpm.d/www.conf
-```
+~~~
 
-```
+~~~
 listen = /var/run/php-fpm.sock
 listen.owner = nginx
 listen.group = nginx
-```
+~~~
 
-```
+~~~
 # git clone git@github.com:tany/php-note.git /var/www/php-note
 # ln -s /var/www/php-note/conf/server/nginx/note.conf /etc/nginx/conf.d/
 # /opt/remi/php70/root/usr/sbin/php-fpm
 # systemctl restart nginx
-```
+~~~
 
 ## PDT Extension group
 

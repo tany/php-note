@@ -1,0 +1,11 @@
+@foreach $items as $item
+  <article class="sns-articles">
+    <h3 class="sns-article-title">
+      <a href="/note/{$item->_id}">{$item->title}</a>
+    </h3>
+    <div class="sns-article-meta">
+      <a class="user">{$item->uid}</a>
+      <time class="date">{$item->updated->format('Y/n/j H:i')}</time>
+    </div>
+  </article>
+@end

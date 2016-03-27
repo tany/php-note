@@ -1,0 +1,28 @@
+<style>
+.mdl-data-table { white-space: normal; }
+.mdl-data-table td { padding-top: 7px; vertical-align: top; }
+</style>
+
+<div class="sns-content--wide">
+  <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric field-name">Field Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach $item->data() as $field => $value
+        <tr data-id="{$field}">
+          <td class="mdl-data-table__cell--non-numeric">
+            {$field}
+          </td>
+          <td class="mdl-data-table__cell--non-numeric {$item->cssClass($field)}">
+            <div class="field-type">&lt;{$item->fieldType($field)}&gt;</div>
+            <div class="field-data">{$item->toString($field)}</div>
+          </td>
+        </tr>
+      @end
+    </tbody>
+  </table>
+</div>

@@ -9,12 +9,12 @@
 
 @if $items->size()
 <div class="sns-content">
-  <form method="post" action="?do=deleteAll">
+  <form method="post" action="?do=dropAll">
     @render '_items'
 
     <div class="sns-list-footer">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-        Delete
+        <i class="material-icons with-text">delete</i>
       </button>
       <div class="sns-list-footer--right-section">
         {{= $items->paginate() }}

@@ -4,5 +4,5 @@ namespace app;
 
 class Model {
 
-    use \feature\Accessor;
+    use \feature\Accessable;
 }

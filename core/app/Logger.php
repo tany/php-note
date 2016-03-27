@@ -23,7 +23,7 @@ class Logger {
     protected static function format($data) {
         if ($data === null) return var_export($data, true);
         if (is_bool($data)) return var_export($data, true);
-        if (is_string($data)) return var_export($data, true);
+        if (is_string($data)) return str_replace('$', '\$', $data);
         if (is_numeric($data)) return $data;
 
         $data = print_r($data, true);
@@ -64,8 +64,8 @@ class Logger {
             $buf[] = '<pre class="app-dump">' . h($log) . "</pre>\n";
         }
         $buf[] = '<div id="app-stat">';
-        $buf[] = sprintf('<span class="cpu">%.2f ms</span>/', self::time() * 1000);
-        $buf[] = sprintf('<span class="mem">%d kb</span>', memory_get_peak_usage() / 1024);
+        $buf[] = sprintf('<span class="cpu">%.2f ms</span>', self::time() * 1000);
+        $buf[] = sprintf(' / <span class="mem">%d kb</span>', memory_get_peak_usage() / 1024);
         $buf[] = '</div>';
         return join('', $buf);
     }

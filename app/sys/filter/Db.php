@@ -2,36 +2,31 @@
 
 namespace sys\filter;
 
+\Klass::bind(__NAMESPACE__ . '\Db', [
+    'views' => function() {
+        return ['sys/view/db/main'];
+    },
+    'overviews' => function() {
+        return ['sns/overview/fixed-drawer'];
+    },
+]);
+
 trait Db {
+    //
 }
 
-class Db__Bind {
+// function Db__breadcrumbs() {
+//     return function($request) {
+//         //$this->overviews = ['sns/overview/fixed-header'];
 
-    public static function bindViews() {
-        return function($request) {
-            $this->views[] = 'sys/view/db/main';
-        };
-    }
+//         $crumbs = [[$url = "/.sys/db/", 'Database']];
 
-    public static function bindOverviews() {
-        return function($request) {
-            $this->overviews = ['sns/overview/fixed-drawer'];
-        };
-    }
-
-//     public static function breadcrumbs() {
-//         return function($request) {
-//             //$this->overviews = ['sns/overview/fixed-header'];
-
-//             $crumbs = [[$url = "/.sys/db/", 'Database']];
-
-//             if ($db = $this->request->db) {
-//                 $crumbs[] = [$url = "{$url}{$db}/", $db];
-//             }
-//             if ($coll = $this->request->coll) {
-//                 $crumbs[] = [$url = "{$url}{$coll}/", $coll];
-//             }
-//             return $crumbs;
-//         };
-//     }
-}
+//         if ($db = $this->request->db) {
+//             $crumbs[] = [$url = "{$url}{$db}/", $db];
+//         }
+//         if ($coll = $this->request->coll) {
+//             $crumbs[] = [$url = "{$url}{$coll}/", $coll];
+//         }
+//         return $crumbs;
+//     };
+// }

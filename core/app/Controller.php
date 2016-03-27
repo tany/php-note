@@ -4,11 +4,10 @@ namespace app;
 
 class Controller {
 
-    use \feature\Accessor;
+    use \feature\Accessable;
+    use \feature\ClassBindable;
 
     protected $response;
-    protected $views     = [];
-    protected $overviews = [];
 
     public function __construct($request, $controller, $action) {
         $this->request    = $request;
@@ -18,23 +17,14 @@ class Controller {
     }
 
     public function __invoke() {
-        $binders = [];
-        foreach (class_uses_real(get_called_class()) as $trait) {
-            if (class_exists($class = "{$trait}__Bind")) $binders[] = $class;
-        }
+        $request = $this->request;
 
-        $binds = ['before', 'views', 'overviews'];
-        foreach ($binds as $name) {
-            $method = 'bind' . ucfirst($name);
-            foreach ($binders as $class) {
-                if (method_exists($class, $method)) $class::$method()->call($this, $this->request);
-            }
-            $this->$name($this->request);
+        foreach ($this->classBinds('before') as $func) {
+            if ($resp = $func->call($this, $request)) return $resp;
         }
+        if ($resp = $this->before($request)) return $resp;
+        if ($resp = $this->{$this->action}($request)) return $resp;
 
-        if ($resp = $this->{$this->action}($this->request)) {
-            return $resp;
-        }
         return $this->render();
     }
 
@@ -42,23 +32,40 @@ class Controller {
         //
     }
 
-    protected function views($request) {
-        //
+    protected function views() {
+        return [];
     }
 
-    protected function overviews($request) {
-        //
+    protected function overviews() {
+        return [];
+    }
+
+    protected function bindViews() {
+        $paths = [];
+        foreach ($this->classBinds('views') as $func) {
+            $paths = array_merge($paths, $func->call($this));
+        }
+        return array_merge($paths, $this->views());
+    }
+
+    protected function bindOverviews() {
+        if ($paths = $this->overviews()) return $paths;
+        foreach (array_reverse($this->classBinds('overviews')) as $func) {
+            if ($paths = $func->call($this)) return $paths;
+        }
+        return [];
     }
 
     protected function render($action = null) {
-        $action = $action ?? $this->action;
+        $request = $this->request;
+        $action  = $action ?? $this->action;
 
-        $view = new \app\view\Engine();
+        $view = new \app\view\Engine;
         $view->_data =& $this->_data;
-        $view->includePath($this->views);
+        $view->includePath($this->bindViews());
         $view->currentPath(preg_replace('/\//', '/view/', underscore($this->controller), 1));
         $view->render($action);
-        $view->renderOver($this->overviews);
+        $view->renderOver($this->bindOverviews());
 
         return $this->response->capture();
     }

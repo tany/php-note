@@ -1,0 +1,22 @@
+<header class="sns-header">
+  <div class="sns-content">
+    @render '_menu'
+    <h2 class="sns-content-title">
+      New {{ preg_replace('/.*\W/', '', get_class(($items ?? $item))) }}
+    </h2>
+  </div>
+</header>
+
+<div class="sns-content">
+  @form $item
+    <div class="sns-form">
+      @render '_form'
+    </div>
+
+    <div class="sns-form-footer">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">
+        Save
+      </button>
+    </div>
+  @/form
+</div>

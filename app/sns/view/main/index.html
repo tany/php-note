@@ -1,7 +1,7 @@
 <header class="sns-header">
   <div class="sns-content">
     <nav class="sns-content-menu">
-      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="/note/?do=create">
+      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="/note/?do=add">
         <i class="material-icons">add</i>
       </a>
     </nav>
@@ -12,5 +12,5 @@
 </header>
 
 <div class="sns-content">
-  @render 'note/view/page/_items', ['items' => $items]
+  @render 'note/view/pages/_items', ['items' => $items]
 </div>

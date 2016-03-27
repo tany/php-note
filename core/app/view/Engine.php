@@ -4,7 +4,7 @@ namespace app\view;
 
 class Engine {
 
-    use \feature\Accessor;
+    use \feature\Accessable;
 
     protected $_path;
     protected $_dirs = [];

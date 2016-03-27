@@ -1,17 +1,17 @@
 <nav class="sns-content-menu">
   @if $this->action === 'see'
-    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" href="?do=update">
+    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" href="?do=edit">
       <i class="material-icons with-text">edit</i>Edit
     </a>
-  @elseif $this->action === 'update'
-    <form method="post" action="?do=delete">
+  @elseif $this->action === 'edit'
+    <form method="post" action="?do=drop">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"
        onclick="return confirm('mjd ?');">
         <i class="material-icons with-text">delete</i>Drop
       </button>
     </form>
   @else $this->action === 'index'
-    <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="?do=create">
+    <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="?do=add">
       <i class="material-icons">add</i>
     </a>
   @end

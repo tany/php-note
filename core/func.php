@@ -1,32 +1,37 @@
 <?php
 
-// debug
+// --- debug --- //
+
 function dump($expression, ...$params) {
     return \app\Logger::dump($expression, ...$params);
 }
+
 function trace($expression, ...$params) {
     return \app\logger\Dump::trace($expression, ...$params);
 }
 
-// string
-function h($str) {
-    return htmlspecialchars((string)$str, ENT_QUOTES);
-}
-function hbr($str) {
-    return nl2br(htmlspecialchars((string)$str, ENT_QUOTES));
-}
+// --- string --- //
+
 function extname($str) {
     return substr($str, strrpos($str, '.') + 1);
 }
+
 function camelize($str) {
     return str_replace(' ', '', ucwords(preg_replace('/[_\-]+/', ' ', preg_replace('/([^a-zA-Z0-9]+)/', '$1 ', $str))));
 }
+
 function underscore($str) {
     return strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $str));
 }
+
 function hyphenate($str) {
     return strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $str));
 }
+
+function str_end($str, $needle) {
+    return substr($str, strrpos($str, $needle)) === $needle;
+}
+
 function pretty_size($bytes) {
     if ($bytes >= 1073741824) $bytes = number_format($bytes / 1073741824, 2) . ' GB';
     elseif ($bytes >= 1048576) $bytes = number_format($bytes / 1048576, 2) . ' MB';
@@ -37,14 +42,32 @@ function pretty_size($bytes) {
     return $bytes;
 }
 
-// array
+// --- html --- //
+
+function h($str) {
+    return htmlspecialchars($str, ENT_QUOTES);
+}
+
+function hbr($str) {
+    return nl2br(htmlspecialchars($str, ENT_QUOTES));
+    //return preg_replace("/\r\n|\n/", '<br />', h($str));
+}
+
+// --- array --- //
+
 function array_kmap(callable $closure, array $array) {
     $ret = [];
     foreach ($array as $key => $val) $ret[] = $closure($key, $val);
     return $ret;
 }
+function array_map_recursive(callable $closure, array $array) {
+    $buf = [];
+    foreach ($array as $k => $v) $buf[$k] = is_array($v) ? array_map_recursive($closure, $v) : $closure($v);
+    return $buf;
+}
 
-// file
+// --- file --- //
+
 function load_file($file) {
     ob_start();
     include $file;
@@ -63,33 +86,36 @@ function ls($path) {
     return $files;
 }
 
-// ---
-function str_end($str, $needle) {
-    return substr($str, strrpos($str, $needle)) === $needle;
-    //return preg_match('/\Q' . $needle . '\E$/', $str);
+// --- class --- //
+
+function get_parent_classes($class) {
+    static $caches = [];
+    if (isset($caches[$class])) return $caches[$class];
+
+    $parent = get_parent_class($class);
+    return $caches[$class] = $parent ? array_merge(get_parent_classes($parent), [$parent]) : [];
 }
 
-// class
-function get_parent_classes($class) {
-    $classes = [];
-    if ($parent = get_parent_class($class)) {
-        $classes = array_merge(get_parent_classes($parent), $classes);
-        $classes[] = $parent;
-    }
-    return $classes;
-}
-function class_uses_recursive($class, $autoload = true) {
+function class_uses_recursive($class) {
+    static $caches = [];
+    if (isset($caches[$class])) return $caches[$class];
+
     $traits = [];
-    foreach (class_uses($class, $autoload) as $trait) {
-        $traits = array_merge(class_uses_recursive($trait, $autoload), $traits);
-        $traits[] = $trait;
+    foreach (class_uses($class) as $trait) {
+        $traits = array_merge(class_uses_recursive($trait), $traits, [$trait]);
     }
-    return $traits;
+    return $caches[$class] = $traits;
 }
-function class_uses_real($class, $autoload = true) {
+
+function class_real_uses($class) {
+    static $caches = [];
+    if (isset($caches[$class])) return $caches[$class];
+
     $traits = [];
     foreach (get_parent_classes($class) as $parent) {
-        $traits = array_merge($traits, class_uses_recursive($parent, $autoload));
+        $traits[] = class_uses_recursive($parent);
     }
-    return array_unique(array_merge($traits, class_uses_recursive($class, $autoload)));
+    $traits[] = class_uses_recursive($class);
+    $traits = array_filter($traits);
+    return $caches[$class] = $traits ? array_unique(array_merge(...$traits)) : [];
 }

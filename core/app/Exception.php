@@ -26,10 +26,16 @@ class Exception {
 
     public static function register() {
         set_exception_handler('app\Exception::catch');
+        set_error_handler('app\Exception::catch');
     }
 
     public static function catch($e) {
-        if (ob_get_level()) $buf = ob_clean();
+        while (ob_get_level()) { $buf = ob_get_clean(); }
+
+        if (is_int($e)) {
+            $args = func_get_args();
+            $e = new \ErrorException($args[1], $args[0], 1, $args[2], $args[3]);
+        }
 
         $type  = self::$codes[$e->getCode()] ?? '';
         $title = "{$type}: " . self::message($e);

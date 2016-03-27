@@ -1,2 +1,2 @@
-note/     note/Page/index
-  :id     note/Page/see
+note/     note/Pages/index
+  :id     note/Pages/see

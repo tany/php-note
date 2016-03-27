@@ -17,11 +17,11 @@ final class Connection {
     protected static $lastConnection;
     protected static $lastQuery;
     protected $manager;
-    protected $dbname;
+    protected $dbName;
 
     public function __construct($conf) {
         $this->manager = new Manager($conf['server'], $conf['options']);
-        $this->dbname  = $conf['dbname'];
+        $this->dbName  = $conf['dbname'];
     }
 
     public static function connect($section = 'default') {
@@ -40,8 +40,8 @@ final class Connection {
         return self::$lastQuery;
     }
 
-    public function db() {
-        return $this->dbname;
+    public function dbName() {
+        return $this->dbName;
     }
 
     public function command($db, $command) {
@@ -74,10 +74,10 @@ final class Connection {
         return $this->command($db, ['drop' => $collection]);
     }
 
-    public function query($namespace, $filter, $options = []) {
+    public function query($namespace, $query, $options = []) {
         self::$lastConnection = $this;
-        self::$lastQuery = ['namespace' => $namespace, 'filter' => $filter, 'options' => $options];
-        return $this->manager->executeQuery($namespace, new Query($filter, $options));
+        self::$lastQuery = ['namespace' => $namespace, 'query' => $query, 'options' => $options];
+        return $this->manager->executeQuery($namespace, new Query($query, $options));
     }
 
     public function write($namespace, $bulk) {
@@ -86,37 +86,37 @@ final class Connection {
 
     public function insert($namespace, $data = []) {
         $bulk = new BulkWrite;
-        $dataId = $bulk->insert($data);
+        $dataId = $bulk->insert($data) ?? $data['_id'];
         $this->result = $this->write($namespace, $bulk);
         return $this->result->getWriteErrors() ? false : $dataId;
     }
 
-    public function update($namespace, $filter = [], $data = [], $options = []) {
+    public function update($namespace, $query = [], $update = [], $options = []) {
         $bulk = new BulkWrite;
-        $bulk->update($filter, $data, $options);
+        $bulk->update($query, $update, $options);
         $this->result = $this->write($namespace, $bulk);
         return !$this->result->getWriteErrors();
     }
 
-    public function upsert($namespace, $filter = [], $data = [], $options = []) {
+    public function upsert($namespace, $query = [], $update = [], $options = []) {
         $options['upsert'] = $options['upsert'] ?? true;
-        return $this->update($namespace, $filter, $data, $options);
+        return $this->update($namespace, $query, $update, $options);
     }
 
-//     public function updateAll($namespace, $filter = [], $data = [], $options = []) {
-//         $options['multi'] = $options['multi'] ?? true;
-//         return $this->update($namespace, $filter, $data, $options);
-//     }
+    public function updateAll($namespace, $query = [], $update = [], $options = []) {
+        $options += ['multi' => true];
+        return $this->update($namespace, $query, $update, $options);
+    }
 
-    public function delete($namespace, $filter = [], $options = []) {
+    public function remove($namespace, $query = [], $options = []) {
         $bulk = new BulkWrite;
-        $bulk->delete($filter, $options);
+        $bulk->delete($query, $options);
         $this->result = $this->write($namespace, $bulk);
         return !$this->result->getWriteErrors();
     }
 
-//     public function deleteAll($namespace, $filter = [], $options = []) {
-//         $options['limit'] = $options['limit'] ?? 0;
-//         return $this->delete($namespace, $filter, $options);
-//     }
+    public function removeAll($namespace, $query = [], $options = []) {
+        $options += ['limit' => 0];
+        return $this->delete($namespace, $query, $options);
+    }
 }

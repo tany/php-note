@@ -4,7 +4,7 @@ namespace app;
 
 class Request {
 
-    use \feature\Accessor;
+    use \feature\Accessable;
 
     protected $_path;
 

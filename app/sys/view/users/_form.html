@@ -1,0 +1,30 @@
+@input 'uid'
+@input 'name'
+@input 'email'
+
+<!--
+<div class="mdl-textfield mdl-js-textfield sns-field">
+  <label class="mdl-textfield__label">User ID</label>
+  <input class="mdl-textfield__input" type="text" name="data[uid]" value="{$item->uid}" required="required" />
+</div>
+
+<div class="mdl-textfield mdl-js-textfield sns-field">
+  <label class="mdl-textfield__label">Name</label>
+  <input class="mdl-textfield__input" type="text" name="data[name]" value="{$item->name}" required="required" />
+</div>
+
+<div class="mdl-textfield mdl-js-textfield sns-field">
+  <label class="mdl-textfield__label">Email</label>
+  <input class="mdl-textfield__input" type="email" name="data[email]" value="{$item->email}" required="required" />
+</div>
+-->
+
+<div class="mdl-textfield mdl-js-textfield sns-field">
+  @if $item->_id
+  <label class="mdl-textfield__label">New Password</label>
+  <input class="mdl-textfield__input" type="password" name="data[inPassword]" />
+  @else
+  <label class="mdl-textfield__label">Password</label>
+  <input class="mdl-textfield__input" type="password" name="data[inPassword]" required="required" />
+  @end
+</div>
