@@ -8,7 +8,7 @@ MongoDB Tool + α
 ## Install
 
 ~~~
-# rpm -Uvh http://ftp.iij.ad.jp/pub/linux/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+# rpm -Uvh http://ftp.iij.ad.jp/pub/linux/fedora/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
 # rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
 # yum install -y --enablerepo=remi,remi-php70 \
