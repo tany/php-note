@@ -1,0 +1,16 @@
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach $items as $item
+    <tr data-id="{$item->_id}">
+      <td class="mdl-data-table__cell--non-numeric">
+        <a href="{$item->_id}">{$item->_id}</a>
+      </td>
+    </tr>
+    @end
+  </tbody>
+</table>

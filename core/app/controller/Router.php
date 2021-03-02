@@ -22,7 +22,8 @@ class Router {
             $time = max($time, filemtime($f));
         }
 
-        if (($cache = apcu_fetch('app.routes'))[0] >= $time) {
+        $cache = apcu_fetch('app.routes');
+        if ($cache && $cache[0] >= $time) {
             self::$routes = $cache[1];
         } else {
             $conf = '';

@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note</title>
+<link href="/asset/note/style.css" rel="stylesheet" />
+<script src="/asset/note/script.js"></script>
+</head>
+<body>
+<div class="layout-page">
+
+<header class="layout-header">
+  <div class="layout-wrap">
+    <span class="layout-header-item layout-header-menu hide-on-large-onlyX" data-activates="nav-side">
+      <i class="material-icons">menu</i>
+    </span>
+    <a class="layout-header-item layout-header-title" href="/">
+      <h1>Note</h1>
+    </a>
+
+    <div class="right">
+      @if $curUser ?? false
+        <a class="layout-header-item hide-on-med-and-down" href="/.sys/">Administration</a>
+        <a class="layout-header-item hide-on-med-and-down" href="/.sys/db/">Database</a>
+        <span class="layout-header-item layout-header-sign dropdown-button"
+          data-activates="nav-more" data-constrainwidth="false" data-alignment="right" data-induration="200">
+          <span class="btn btn-flat btn-floating waves-effect white black-text">{{ ucfirst($curUser->uid[0]) }}</span>
+        </span>
+      @else
+        <a class="layout-header-item layout-header-sign" href="/login">Sign in</a>
+      @end
+
+      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+  <li class="mdl-menu__item">Some Action</li>
+  <li class="mdl-menu__item">Another Action</li>
+  <li disabled class="mdl-menu__item">Disabled Action</li>
+  <li class="mdl-menu__item">Yet Another Action</li>
+</ul>
+
+<ul class="side-nav" id="nav-side">
+  <li><a class="waves-effect" href="/.sys/"><i class="material-icons with-text">security</i>Administration</a></li>
+  <li><a class="waves-effect"  href="/.sys/db/"><i class="material-icons with-text">perm_data_setting</i>Database</a></li>
+</ul>
+
+<ul class="dropdown-content" id="nav-more">
+  <li><a href="/logout">Sign out</a></li>
+</ul>
+
+<main class="layout-body">
+  @yield
+</main>
+
+</div>
+</body>
+</html>

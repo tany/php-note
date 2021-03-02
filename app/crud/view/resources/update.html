@@ -1,0 +1,19 @@
+<header class="content-header">
+  <div class="layout-wrap">
+    <div class="content-menu">
+      @render '_menu'
+    </div>
+    <h2 class="content-title">
+      <a>Edit</a>
+    </h2>
+  </div>
+</header>
+
+<div class="content-body">
+  <div class="layout-wrap">
+    @form $item
+      @render '_form'
+      <input class="btn waves-effect waves-light" type="submit" value="Save" />
+    @/form
+  </div>
+</div>

@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+//= require mdl/material.min.css
+//= require mdi/material-icons.css
+//= require core/github-markdown.css
+//= require note/util.p.css
+
+//--------------------------------------------------------------------------------------------------
+// Base
+
+html, body {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.80);
+  font: 14px/1.42857143 Robot,Helvetica,Arial,"Hiragino Kaku Gothic Pro",Meiryo,"MS PGgothic",sans-serif;
+  word-break: break-all;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  font: inherit;
+}
+a {
+  color: #039be5;
+  text-decoration: none;
+}
+a:hover {
+  color: #ff4081;
+}
+a.btn:hover {
+  //color: #fff;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Layout
+
+.ss-layout-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.ss-layout-header {
+  height: 60px;
+  margin: 0 0 15px;
+  $box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
+  font-size: 1.4rem;
+  text-align: right;
+  line-height: 60px;
+  .ss-layout-wrap {
+    position: relative;
+  }
+  .title {
+    display: inline-block;
+    float: left;
+    font-size: 1.8rem;
+  }
+  .item {
+    margin-right: 30px;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+xxx {
+
+//--------------------------------------------------------------------------------------------------
+// Materialize
+
+.side-nav, .dropdown-content {
+  padding: 10px 0;
+}
+label {
+  font-size: 1rem;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Commons
+
+.material-icons.with-text {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Layout
+
+.layout-header-item {
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+  cursor: pointer;
+  color: inherit;
+  line-height: 50px;
+  &:hover { color: #ff4081; }
+  .material-icons {
+    line-height: 50px;
+  }
+}
+.layout-header-title {
+  font-size: 1.45rem;
+}
+.layout-header-menu {
+  margin-right: 15px;
+}
+.layout-header-sign {
+  margin-right: 0;
+  .btn {
+    margin-top: -1px;
+    font-size: 1.2rem;
+  }
+}
+.layout-body {
+}
+
+#nav-more {
+  top: 50px !important;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Content
+
+.content-header {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+.content-menu {
+  float: right;
+  margin: -7px 0 0 15px;
+}
+.content-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.content-body {
+  padding: 20px 0;
+}
+.content-list {
+  margin: 0 0 8px;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #eee;
+}
+.content-list-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.content-list-meta {
+  font-size: 0.85rem;
+  .attr {
+    margin-right: 10px;
+  }
+}
+
+} /* }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} */
+
+//--------------------------------------------------------------------------------------------------
+// App
+
+#app-stat {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 1000;
+  color: #aaa;
+  font: 12px/1 Arial;
+}
+.app-dump {
+  position: relative;
+  z-index: 1000;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #bbb;
+  $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #820;
+  font: 12px/1.4 arial, sans-serif;
+}

@@ -1,9 +1,15 @@
-<div class="mdl-textfield mdl-js-textfield sns-field sns-field--wide">
-  <label class="mdl-textfield__label">Title</label>
-  <input class="mdl-textfield__input" type="text" name="data[title]" value="{$item->title}" required="required" />
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="text" id="sample3" required="required" />
+  <label class="mdl-textfield__label" for="sample3">Text...</label>
 </div>
 
-<div class="mdl-textfield mdl-js-textfield sns-field sns-field--wide">
-  <label class="mdl-textfield__label">Body</label>
-  <textarea class="mdl-textfield__input" name="data[body]" required="required">{$item->body}</textarea>
+<div class="input-field col s6">
+  <input id="last_name" type="text" class="validate" required="required" />
+  <label for="last_name">Last Name</label>
 </div>
+
+<label>Title</label>
+<input class="--validatde" type="text" name="data[title]" value="{$item->title}" required="required" />
+
+<label>Body</label>
+<textarea class="materialize-textarea" name="data[body]" required="required">{$item->body}</textarea>

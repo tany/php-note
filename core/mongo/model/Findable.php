@@ -51,7 +51,7 @@ trait Findable {
     }
 
     public function size() {
-        $command = ['count' => $this->collectionName(), 'query' => $this->_query];
+        $command = ['count' => $this->collectionName(), 'query' => $this->_query ?: null];
         $cursor = $this->connect()->command($this->dbName(), $command);
         return current($cursor->toArray())->n;
     }

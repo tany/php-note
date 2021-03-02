@@ -2,14 +2,12 @@
 
 namespace mongo\feature;
 
-\Klass::bind(__NAMESPACE__ . '\SequenceId', [
-    'schema' => function() {
-        return ['_id' => ['type' => 'integer']];
-    },
-    'beforeSave' => function() {
-        if ($this->_id === null) $this->_id = $this->nextId();
-    },
-]);
+\Klass::bind(SequenceId::class, 'schema', function() {
+    return ['_id' => ['type' => 'integer']];
+});
+\Klass::bind(SequenceId::class, 'beforeSave', function() {
+    if ($this->_id === null) $this->_id = $this->nextId();
+});
 
 trait SequenceId {
 

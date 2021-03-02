@@ -1,0 +1,26 @@
+<header class="content-header">
+  <div class="layout-wrap">
+    <div class="content-menu">
+      @render '_menu'
+    </div>
+    <h2 class="content-title">
+      <a>Index</a>
+    </h2>
+  </div>
+</header>
+
+<div class="content-body">
+  <div class="layout-wrap">
+    @foreach $items as $item
+      <article class="content-list">
+        <h3 class="content-list-title truncate">
+          <a href="{$item->_id}">{$item->title}</a>
+        </h3>
+        <div class="content-list-meta">
+          <span class="attr"><time>{$item->updated->format('Y/n/j H:i')}</time></span>
+          <span class="attr">{$item->uid}</span>
+        </div>
+      </article>
+    @end
+  </div>
+</div>

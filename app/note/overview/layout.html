@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note</title>
+<link href="/asset/note/style.css" rel="stylesheet" />
+<script src="/asset/note/script.js"></script>
+</head>
+<body>
+<div class="ss-layout">
+  <header class="ss-layout-header">
+    <div class="ss-layout-wrap">
+      <a class="title" href="/">
+        <h1>Note</h1>
+      </a>
+      @if $curUser ?? false
+      @end
+      <a class="item" href="/.sys/">SYS</a>
+      <a class="item" href="/.sys/db/">DB</a>
+      <a class="item" href="/login">Sign in</a>
+      <button id="header-more" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-more">
+        <li class="mdl-menu__item">Some Action</li>
+        <li class="mdl-menu__item"><a href="/logout">Sign out</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <main class="ss-layout-wrap">
+    @yield
+  </main>
+</div>
+</body>
+</html>

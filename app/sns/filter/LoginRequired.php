@@ -2,11 +2,9 @@
 
 namespace sns\filter;
 
-\Klass::bind(__NAMESPACE__ . '\LoginRequired', [
-    'before' => function($request) {
-        return $this->requireLogin();
-    },
-]);
+\Klass::bind(LoginRequired::class, 'before', function($request) {
+    return $this->requireLogin();
+});
 
 trait LoginRequired {
     //

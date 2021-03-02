@@ -23,6 +23,6 @@ class Dispatcher {
         foreach (controller\Router::$routes as $route) {
             echo "<div>{$route['path']}</div>\n";
         }
-        return (new Response)->setCode(200)->capture();
+        return (new Response)->setCode(404)->capture();
     }
 }

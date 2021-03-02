@@ -2,11 +2,9 @@
 
 namespace sns\filter;
 
-\Klass::bind(__NAMESPACE__ . '\Base', [
-    'overviews' => function() {
-        return ['sns/overview/fixed-header'];
-    },
-]);
+\Klass::bind(Base::class, 'overviews', function() {
+    return ['sns/overview/fixed-header'];
+});
 
 trait Base {
 

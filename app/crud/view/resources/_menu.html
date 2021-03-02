@@ -1,0 +1,14 @@
+@if $this->action === 'index'
+  <a class="btn waves-effect waves-light" href="?do=create">Create</a>
+@elseif $this->action === 'see'
+  <a class="btn waves-effect waves-light" href="?do=update">Edit</a>
+@elseif $this->action === 'create'
+
+@elseif $this->action === 'update'
+  <form method="post" action="?do=drop">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"
+     onclick="return confirm('mjd ?');">
+      <i class="material-icons with-text">delete</i>Drop
+    </button>
+  </form>
+@end

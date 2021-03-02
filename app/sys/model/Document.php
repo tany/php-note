@@ -22,6 +22,8 @@ class Document extends \mongo\Model {
         } elseif ($item instanceof \mongo\type\DateTime) {
             return $item->format('Y/n/j H:i');
         } elseif ($item instanceof \MongoDB\BSON\ObjectId) {
+            $str = $item->__toString();
+            return substr($str, 0, 4) . '...' . substr($str, -6);
             return $item->__toString();
         } else {
             return mb_strimwidth($this->toString($field), 0, 16);

@@ -16,6 +16,7 @@ class DateTime extends \DateTime implements Serializable {
 
     public static function fromBSON($bson) {
         $tz = new \DateTimeZone(date_default_timezone_get());
+        if (!$bson->__toString()) return 0;
         return (new self('@' . substr($bson->__toString(), 0, -3)))->setTimeZone($tz);
     }
 

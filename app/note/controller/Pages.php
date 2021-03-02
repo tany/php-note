@@ -4,8 +4,8 @@ namespace note\controller;
 
 class Pages extends \app\Controller {
 
-    use \sns\filter\Base;
-    use \sns\filter\Crud;
+    use \note\filter\Base;
+    use \crud\filter\Base;
 
     protected function fixParams() {
         return ['uid' => $this->curUser->uid];

@@ -2,11 +2,9 @@
 
 namespace sns\filter;
 
-\Klass::bind(__NAMESPACE__ . '\Login', [
-    'before' => function($request) {
-        $this->isLogin();
-    },
-]);
+\Klass::bind(Login::class, 'before', function($request) {
+    $this->isLogin();
+});
 
 trait Login {
 

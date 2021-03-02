@@ -2,11 +2,9 @@
 
 namespace sns\filter;
 
-\Klass::bind(__NAMESPACE__ . '\Crud', [
-    'views' => function() {
-        return ['sns/view/crud'];
-    },
-]);
+\Klass::bind(Crud::class, 'views', function() {
+    return ['sns/view/crud'];
+});
 
 trait Crud {
 

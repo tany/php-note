@@ -2,14 +2,12 @@
 
 namespace sys\filter;
 
-\Klass::bind(__NAMESPACE__ . '\Db', [
-    'views' => function() {
-        return ['sys/view/db/main'];
-    },
-    'overviews' => function() {
-        return ['sns/overview/fixed-drawer'];
-    },
-]);
+\Klass::bind(Db::class, 'views', function() {
+    return ['sys/view/db/main'];
+});
+\Klass::bind(Db::class, 'overviews', function() {
+    return ['sns/overview/fixed-drawer'];
+});
 
 trait Db {
     //

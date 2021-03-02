@@ -1,20 +1,24 @@
 <script>
 $(function() {
-  marked.setOptions({ breaks: true });
-  $('.sns-article-body').html(marked($('.sns-article-body').html()));
+  //marked.setOptions({ breaks: true });
+  $('.markdown-body').html(marked($('.markdown-body').html()));
 });
 </script>
 
-<header class="sns-header">
-  <div class="sns-content">
-    @render '_menu'
-    <h2 class="sns-content-title">
-      {$item->title}
+<header class="content-header">
+  <div class="layout-wrap">
+    <div class="content-menu">
+      @render '_menu'
+    </div>
+    <h2 class="content-title">
+      <a>{$item->title}</a>
     </h2>
   </div>
 </header>
 
-<div class="sns-content">
-  <input type="hidden" id="md" value="{$item->body}" />
-  <div class="sns-article-body markdown-body">{$item->body}</div>
+<div class="content-body">
+  <div class="layout-wrap">
+    <input type="hidden" id="md" value="{$item->body}" />
+    <div class="markdown-body">{$item->body}</div>
+  </div>
 </div>
